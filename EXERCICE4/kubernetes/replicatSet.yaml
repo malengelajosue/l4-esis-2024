@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-l4-test
+  labels:
+    app: test
+spec:
+  replicas: 3 
+
+  selector:
+    matchLabels:
+      app: test
+  template:
+
+    metadata:
+      name: l4-test
+      labels:
+        app: test
+    spec:
+      containers:
+        - name: l4-lab-container
+          image: jmalengela/l4-esis:v2
+

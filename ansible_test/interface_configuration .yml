@@ -1,0 +1,39 @@
+# simple IOS config in ansible
+---
+- name: Sample IOS playbook for Ansible core 2.12
+  hosts: routers
+  gather_facts: false
+  vars: 
+    interface_range: "{{ range(0,4) | list }}"
+  vars_files:
+    - "hostvars/switches_vars.yaml"
+  tasks:
+    #- name: Make sure that all the devices are recheable
+    #  ping: 
+    #- name: Gather facts from the switch
+    #  cisco.ios.ios_facts:
+
+    #- name: Change {{ inventory_host }}
+    #  ios_config:
+    #    lines: 
+    #    - hostname CHANDED3
+    - name: Access interface configuration
+      ios_config:
+        lines:  
+          - description Acccess port
+          - switch mode access
+          - switch access vlan 20
+        parents: interface e1/{{ item }}
+      loop: "{{ interface_range }}"
+
+    - name: CONFIGURATION DES INTERFACES LOOPBACK
+      ios_config:
+        lines:
+          - interface loop {{ item }}
+      loop: "{{ range (1,6) | list }} "
+    
+    - name: Printer msg
+      debug:
+        msg:
+        - "{{ interface_range }}"
+    

@@ -1,0 +1,45 @@
+---
+- name: Configuration des equipements cisco
+  hosts: SWITCHES
+  gather_facts: false
+  tasks:
+    - name: TEST DE CONNECTIVITE
+      ping: 
+
+    - name: HOSTNAME CONFIGURATION
+      ios_config:
+        lines: 
+          - hostname CD_ESIS_{{ inventory_hostname }}
+
+    - name: Add configure the login banner
+      ios_banner:
+      #(motd, login, incoming or slip-ppp)
+          banner: exec
+          text: |
+            ****************************************************
+            *    This system is for authorized users only.     *
+            *    Unauthorized access will be prosecuted.       *
+            *    $(hostname) $(line) $(domain)
+            ****************************************************
+          state: present
+    - name: CONFIGURATION DES INTERFACES LOOPBACK
+      ios_config:
+        src: 'CONFIGS/loopback_config.ios'
+
+    - name: Configuration des interface LOOPBACK
+      loop: "{{ range(0,9) | list }} "
+      ios_config:
+        parents: interface Loopback{{ item }}
+        lines:
+          - description Test
+
+    - name: BACKUP DE LA CONFIGURATION
+      ios_config:
+        backup: yes
+      
+
+
+
+
+
+     

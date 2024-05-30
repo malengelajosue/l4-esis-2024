@@ -1,0 +1,22 @@
+hostname {{ hostname }}
+
+{% for vlan_id, vlan_info in vlans.items() %}
+vlan {{ vlan_id }}
+ name {{ vlan_info.name }}
+{% endfor %}
+
+{% for interface_name, interface_info in interfaces.items() %}
+interface {{ interface_name }}
+ {% if interface_info.description is defined %}
+  description {{ interface_info.description }}
+ {% endif %}
+ {% if interface_info.switchport_mode is defined %}
+  switchport mode {{ interface_info.switchport_mode }}
+ {% endif %}
+ {% if interface_info.trunk_allowed_vlans is defined %}
+  switchport trunk allowed vlan {{ interface_info.trunk_allowed_vlans }}
+ {% endif %}
+ {% if interface_info.access_vlan is defined %}
+  switchport access vlan {{ interface_info.access_vlan }}
+ {% endif %}
+{% endfor %}

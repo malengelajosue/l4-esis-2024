@@ -1,0 +1,7 @@
+Host 192.168.163.* 
+   
+    HostKeyAlgorithms +ssh-rsa
+    Ciphers +aes256-cbc,3des-cbc
+    KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1
+    HostKeyAlgorithms +ssh-dss 
+    PubkeyAcceptedAlgorithms +ssh-rsa

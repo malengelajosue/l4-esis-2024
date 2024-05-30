@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: deploy-l4-lab
+  labels:
+    app: lab 
+spec:
+  replicas: 3
+  template:
+    metadata: 
+      name: l4-lab
+      labels:
+        app: lab 
+    spec:
+      containers:
+        - name: l4-lab-image
+          image: jmalengela/l4-esis:v2
+  selector:
+    matchLabels:
+      app: lab

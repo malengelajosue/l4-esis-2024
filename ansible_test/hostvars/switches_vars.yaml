@@ -1,0 +1,6 @@
+---
+interfaces:
+  - name: ethernet0/1
+    description: END DEVICES 
+    switchport_mode: access
+    access_vlan: 20

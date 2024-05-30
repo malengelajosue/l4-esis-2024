@@ -1,0 +1,59 @@
+antranig@caret.cam.ac.uk
+apache@localhost
+cwen@iupui.edu
+david.horwitz@uct.ac.za
+dhorwitz@david-horwitz-
+gopal.ramasammycook@gmail.com
+gsilver@umich.edu
+@iupui.edu
+josrodri@iupui.edu
+louis@media.berkeley.edu
+@nakamura.uits.iupui.edu
+postmaster@collab.sakaiproject.org
+ray@media.berkeley.edu
+rjlowe@iupui.edu
+source@collab.sakaiproject.org
+stephen.marquard@uct.ac.za
+wagnermr@iupui.edu
+zqian@umich.edu
+zqian
+wagnermr
+stephen.marquard
+source
+rjlowe
+ray
+postmaster
+
+louis
+josrodri
+
+gsilver
+gopal.ramasammycook
+dhorwitz
+david.horwitz
+cwen
+apache
+antranig
+cut: 2: No such file or directory
+zqian@umich.edu
+wagnermr@iupui.edu
+stephen.marquard@uct.ac.za
+source@collab.sakaiproject.org
+rjlowe@iupui.edu
+ray@media.berkeley.edu
+postmaster@collab.sakaiproject.org
+@nakamura.uits.iupui.edu
+louis@media.berkeley.edu
+josrodri@iupui.edu
+@iupui.edu
+gsilver@umich.edu
+gopal.ramasammycook@gmail.com
+dhorwitz@david-horwitz-
+david.horwitz@uct.ac.za
+cwen@iupui.edu
+apache@localhost
+antranig@caret.cam.ac.uk
+cut: fields are numbered from 1
+Try 'cut --help' for more information.
+cut: ,: No such file or directory
+cut: 2: No such file or directory

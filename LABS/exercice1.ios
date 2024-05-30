@@ -1,0 +1,23 @@
+hostname SW1
+!desactiver la recherche DNS
+no ip domain lookup 
+!configuration compte utilisateur 
+username admin secret class 
+!protection du mode privilege
+enable secret class
+!protection contre les attaques en force brute
+login block-for 1 attempts 2 within 1
+!journalisation des evenements des authentifications 
+loging on-failure 
+loging on-success
+
+!configuration de l'interface Vlan1
+interface Vlan1 
+    ip address 192.168.163.50 255.255.255.0
+    no shutdown 
+    exit
+
+!securiser la ligne vty
+line vty 0 4 
+!utilisation de la base donnees locale 
+    login local 

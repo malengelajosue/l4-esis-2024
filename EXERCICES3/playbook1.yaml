@@ -1,0 +1,52 @@
+---
+-
+ name: Configuration des switchs de couche couche 2
+ hosts: SWITCHES
+ gather_facts: true
+
+ tasks:
+  #- name: Change the hostname
+   # ios_config:
+   #   lines: hostname CD_UDBL_{{ inventory_hostname }}
+  
+  - name: Add configure the login banner
+    ios_banner:
+    #(motd, login, incoming or slip-ppp)
+        banner: exec
+        text: |
+          ****************************************************
+          *    This system is for authorized users only.     *
+          *    Unauthorized access will be prosecuted.       *
+          *    $(hostname) $(line) $(domain)
+          ****************************************************
+        state: present
+  - name: Configuration initiales
+    ios_config: 
+        src: 'CONFIGS/initialisation.ios'
+  - name: Configuration des interface loopback
+    ios_config: 
+        src: 'CONFIGS/loopback_config.ios'
+
+  - name: SAVED WHEN MODIFIED
+    ios_config:
+      save_when: modified
+
+  - name: Configuration des interface LOOPBACK 
+    loop: "{{ range(0,4) | list }}"
+    ios_config:
+      parents: interface Loopback{{ item }}
+      lines:
+        - description Test
+
+  - name: BACKUP CONFIGURATION
+    ios_config:
+      backup: yes 
+
+  - name: Display info
+    ios_command:
+      commands: show run
+    register: running_conf
+
+  - name: DEBUG
+    debug:
+      msg: "{{ running_conf. stdout_lines}}" 

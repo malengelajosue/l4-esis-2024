@@ -1,0 +1,132 @@
+Building configuration...
+
+Current configuration : 1828 bytes
+!
+! Last configuration change at 01:37:46 UTC Fri May 24 2024 by admin
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname CD_ESIS_SW2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$DTyL$QxIVjThCONzINh7Zwl.Ob.
+!
+username admin secret 5 $1$vjjE$4XBFF.7/4AsoDeRUgkUdb/
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain-name ESISLAB.COM
+ip cef
+login on-failure log
+login on-success log
+no ipv6 cef
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description Test
+ no ip address
+!
+interface Loopback1
+ description Test
+ no ip address
+!
+interface Loopback2
+ description Test
+ no ip address
+!
+interface Loopback3
+ description Test
+ no ip address
+!
+interface Loopback4
+ description Test
+ no ip address
+!
+interface Loopback5
+ description Test
+ no ip address
+!
+interface Loopback6
+ description Test
+ ip address 192.168.1.1 255.255.255.0
+!
+interface Loopback7
+ description Test
+ ip address 192.168.2.1 255.255.255.0
+!
+interface Loopback8
+ description Test
+ no ip address
+!
+interface Ethernet0/0
+!
+interface Ethernet0/1
+!
+interface Ethernet0/2
+!
+interface Ethernet0/3
+!
+interface Vlan1
+ ip address 192.168.56.52 255.255.255.0
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+banner exec ^C
+****************************************************
+*    This system is for authorized users only.     *
+*    Unauthorized access will be prosecuted.       *
+*    $(hostname) $(line) $(domain)
+****************************************************
+^C
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ logging synchronous
+ login local
+ transport input ssh
+!
+!
+end

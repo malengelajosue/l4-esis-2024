@@ -1,0 +1,31 @@
+---
+# Main playbook
+- name: Configure Cisco switches
+  hosts: cisco_switches
+  tasks:
+    - name: Include the cisco_switch_config role
+      include_role:
+        name: cisco_switch_config
+      include_vars:
+        file: switch_config_vars.yaml
+      
+---
+# configuration file 
+vlans:
+  - id: 10
+    name: Sales
+  - id: 20
+    name: Engineering
+  - id: 30
+    name: HR
+
+interfaces:
+  - name: GigabitEthernet0/1
+    description: Uplink to Core Switch
+    switchport_mode: trunk
+    trunk_allowed_vlans: "10,20,30"
+  - name: GigabitEthernet0/2
+    description: Sales Department
+    switchport_mode: access
+    access_vlan: 10
+  - name: GigabitEthernet0/3

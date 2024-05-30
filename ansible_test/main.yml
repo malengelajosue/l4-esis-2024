@@ -1,0 +1,48 @@
+---
+- 
+ name: Configuration des switchs de couche couche 2
+ hosts: SWITCHES
+ gather_facts: true
+
+ tasks:
+  - name: Change the hostname
+    ios_config:
+      lines:
+        - hostname CD_UDBL_{{ inventory_hostname }}
+  
+  - name: Add configure the login banner
+    ios_banner:
+    #(motd, login, incoming or slip-ppp)
+        banner: exec
+        text: |
+          ****************************************************
+          *    This system is for authorized users only.     *
+          *    Unauthorized access will be prosecuted.       *
+          *    $(hostname) $(line) $(domain)
+          ****************************************************
+        state: absent
+  - name: Configuration initiales
+    ios_config: 
+      lines: no ip domain lookup 
+  - name: SAVED WHEN MODIFIED
+    ios_config:
+      save_when: modified
+
+  - name: Configuration des interface LOOPBACK
+    loop: "{{ range(0,4) | list }}"
+    parents: interface loopback {{ item }}
+    ios_config:
+      lines:
+      - description Test
+      
+    
+
+  - name: BACKUP CONFIGURATION
+    ios_config:
+      backup: yes 
+
+
+
+  - name: Display Cisco equipment platform
+    debug:
+        msg: "{{ ansible_facts }}"

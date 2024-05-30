@@ -1,0 +1,9 @@
+---
+- 
+  name: Configuration 
+  hosts:
+  gather_facts:
+  tasks:
+    - name: Task1
+    - name: Task2
+    - name: Task3

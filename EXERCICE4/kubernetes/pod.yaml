@@ -1,0 +1,14 @@
+apiVersion: v1/apps
+kind: pod
+metadata:
+  name: l4-lab
+  labels: 
+    app: lab
+spec:
+  container:
+    - name: lab
+      image: jmalengela/l4-esis:v2
+
+
+
+

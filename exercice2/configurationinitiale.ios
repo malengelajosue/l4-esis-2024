@@ -1,0 +1,25 @@
+!message de banniere
+banner motd #
+ATTENTION ACCES INTERDIT A CET EQUIPEMENT SANS AUTORISATION!
+#
+
+! VLAN Interface configuration for magnagment
+interface vlan 1 
+    ip address 192.168.163.50 255.255.255.0
+    no shutdown
+    exit 
+
+
+!configuration du compte utilisateur
+username admin1 secret   class
+username admin secret   class
+! Protecting exec mode interface 
+enable secret  class
+
+!Line vty configuration 
+line vty 0 4 
+    login local 
+    transport input telnet ssh 
+    exit 
+
+

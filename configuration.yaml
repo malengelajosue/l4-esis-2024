@@ -1,0 +1,15 @@
+---
+- name: Configure Cisco switches
+  hosts: cisco_switches
+  vars_files:
+    - cisco_credentials.yml
+
+  tasks:
+    - name: Ensure SSH is enabled on switches
+      ios_config:
+        lines:
+          - ip ssh version 2
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{ cisco_username }}"
+          password: "{{ cisco_password }}"
